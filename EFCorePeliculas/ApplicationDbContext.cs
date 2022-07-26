@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFCorePeliculas.Entidades;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFCorePeliculas
 {
@@ -7,5 +8,7 @@ namespace EFCorePeliculas
 		public ApplicationDbContext(DbContextOptions options) : base(options)
 		{
 		}
+
+		public DbSet<Genero> Generos { get; set; }
 	}
 }
