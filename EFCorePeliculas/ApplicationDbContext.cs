@@ -1,5 +1,7 @@
 ﻿using EFCorePeliculas.Entidades;
+using EFCorePeliculas.Entidades.Configuraciones;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace EFCorePeliculas
 {
@@ -9,27 +11,27 @@ namespace EFCorePeliculas
 		{
 		}
 
+		protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+		{
+			configurationBuilder.Properties<DateTime>().HaveColumnType("date");
+		}
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			base.OnModelCreating(modelBuilder);
 
-			// Para configurar algún aspecto de la entidad Genero
-			modelBuilder.Entity<Genero>().HasKey(prop => prop.Identificador);
-			modelBuilder.Entity<Genero>().Property(prop => prop.Nombre)
-				//.HasColumnName("NombreGenero")
-				.HasMaxLength(150)
-				.IsRequired();
-			//modelBuilder.Entity<Genero>().ToTable(name: "TablaGeneros", schema: "Peliculas");
+			// Se tendría que crear un ApplyConfiguration por cada clase de configuración
+			//modelBuilder.ApplyConfiguration(new GeneroConfig());
 
-			modelBuilder.Entity<Actor>().Property(prop => prop.Nombre).HasMaxLength(150).IsRequired();
-			modelBuilder.Entity<Actor>().Property(prop => prop.FechaNacimiento).HasColumnType("date");
-
-			modelBuilder.Entity<Cine>().Property(prop => prop.Nombre).HasMaxLength(150).IsRequired();
-			modelBuilder.Entity<Cine>().Property(prop => prop.Precio).HasPrecision(precision: 9, scale: 2);
+			modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 		}
 
 		public DbSet<Genero> Generos { get; set; }
 		public DbSet<Actor> Actores { get; set; }
 		public DbSet<Cine> Cines { get; set; }
+		public DbSet<Pelicula> Peliculas { get; set; }
+		public DbSet<CineOferta> CinesOfertas { get; set; }
+		public DbSet<SalaDeCine> SalasDeCine { get; set; }
+		public DbSet<PeliculaActor> PeliculasActores { get; set; }
 	}
 }
