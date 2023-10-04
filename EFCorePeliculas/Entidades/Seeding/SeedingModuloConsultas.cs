@@ -2,9 +2,12 @@
 using NetTopologySuite;
 using NetTopologySuite.Geometries;
 
+//!=>Referencia [1] [Sección 03, 035. Insertando Datos con Data Seeding]
+
 namespace EFCorePeliculas.Entidades.Seeding
 {
-	public static class SeedingModuloConsultas
+    //!=>[1] CLASE QUE CONTIENE DATOS POR DEFECTO QUE SE APLICARÁN CON UN 'SEEDING'
+    public static class SeedingModuloConsultas
 	{
 		public static void Seed(ModelBuilder modelBuilder)
 		{
@@ -136,7 +139,7 @@ namespace EFCorePeliculas.Entidades.Seeding
 
 			modelBuilder.Entity(entidadGeneroPelicula).HasData(
 				 new Dictionary<string, object> { [generoIdPropiedad] = animación.Identificador, [peliculaIdPropiedad] = coco.Id }
-		 );
+				 );
 
 			var noWayHome = new Pelicula()
 			{
@@ -151,7 +154,7 @@ namespace EFCorePeliculas.Entidades.Seeding
 				 new Dictionary<string, object> { [generoIdPropiedad] = cienciaFicción.Identificador, [peliculaIdPropiedad] = noWayHome.Id },
 				 new Dictionary<string, object> { [generoIdPropiedad] = acción.Identificador, [peliculaIdPropiedad] = noWayHome.Id },
 				 new Dictionary<string, object> { [generoIdPropiedad] = comedia.Identificador, [peliculaIdPropiedad] = noWayHome.Id }
-		 );
+				 );
 
 			var farFromHome = new Pelicula()
 			{
@@ -166,7 +169,7 @@ namespace EFCorePeliculas.Entidades.Seeding
 				 new Dictionary<string, object> { [generoIdPropiedad] = cienciaFicción.Identificador, [peliculaIdPropiedad] = farFromHome.Id },
 				 new Dictionary<string, object> { [generoIdPropiedad] = acción.Identificador, [peliculaIdPropiedad] = farFromHome.Id },
 				 new Dictionary<string, object> { [generoIdPropiedad] = comedia.Identificador, [peliculaIdPropiedad] = farFromHome.Id }
-		 );
+				 );
 
 			var theMatrixResurrections = new Pelicula()
 			{
@@ -181,7 +184,7 @@ namespace EFCorePeliculas.Entidades.Seeding
 				new Dictionary<string, object> { [generoIdPropiedad] = cienciaFicción.Identificador, [peliculaIdPropiedad] = theMatrixResurrections.Id },
 				new Dictionary<string, object> { [generoIdPropiedad] = acción.Identificador, [peliculaIdPropiedad] = theMatrixResurrections.Id },
 				new Dictionary<string, object> { [generoIdPropiedad] = drama.Identificador, [peliculaIdPropiedad] = theMatrixResurrections.Id }
-		);
+				);
 
 			modelBuilder.Entity(entidadSalaDeCinePelicula).HasData(
 			 new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine2DSambil.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
@@ -191,7 +194,7 @@ namespace EFCorePeliculas.Entidades.Seeding
 			 new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine2DMegacentro.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
 			 new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCine3DMegacentro.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id },
 			 new Dictionary<string, object> { [salaDeCineIdPropiedad] = salaDeCineCXCMegacentro.Id, [peliculaIdPropiedad] = theMatrixResurrections.Id }
-	 );
+			 );
 
 
 			var keanuReevesMatrix = new PeliculaActor
@@ -251,8 +254,7 @@ namespace EFCorePeliculas.Entidades.Seeding
 			};
 
 			modelBuilder.Entity<Pelicula>().HasData(avengers, coco, noWayHome, farFromHome, theMatrixResurrections);
-			modelBuilder.Entity<PeliculaActor>().HasData(samuelJacksonFFH, tomHollandFFH, tomHollandNWH, avengersRobertDowney, avengersScarlettJohansson,
-					avengersChrisEvans, keanuReevesMatrix);
+			modelBuilder.Entity<PeliculaActor>().HasData(samuelJacksonFFH, tomHollandFFH, tomHollandNWH, avengersRobertDowney, avengersScarlettJohansson, avengersChrisEvans, keanuReevesMatrix);
 
 		}
 	}
